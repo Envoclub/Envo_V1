@@ -39,11 +39,6 @@ This directory contains various documentation resources, including:
 * Images: Communication diagrams, mind maps, use case diagrams, etc.
 * Text files (optional): Detailed explanations, API references, or other written documentation.
 
-**Additional Notes**
-
-* This README provides a high-level overview. Each module might have its own specific instructions in a separate README file within that directory.
-* Make sure to replace placeholders like `<your-backend-repo-url>` with the actual URLs.
-* Consider adding environment variable setup instructions if your project requires them (e.g., API keys).
 
 **For further assistance:**
 
