@@ -1,0 +1,66 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %} Hello {{ user_display }} 
+
+<style>
+* {
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+}
+
+</style>
+
+
+<img src="https://clubbackend.s3.us-east-1.amazonaws.com/envologo.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFwaCXVzLWVhc3QtMSJIMEYCIQDUwhrULNpbgsDdjn1lkpRngXNKbsCHQgqh3SIG6C8kFQIhAOHR0Yy1htV6OtBAmf1czYTSk16LS1QzgArNietnZPLfKuQCCEUQABoMMzEyMjQ2NTY5Mjc4IgwyrsCnJRlTG8QvJMoqwQK69NJuCIw1IznXA458gZbr798FzBw0IMNM3JQTKSKUmXi%2BtNefsU5SAp19A2XessUuPegv8N4kA3pCEijWGZ56KGzjK0gMm%2B3lVZg%2FBOBqToI4V5eDtnXvHzaoB4IHuflNMO%2Bv9cxFXSpbZdEmKZXP31%2FV5j6w%2FakAoE%2BvUosuMMcSzGNRDL%2BcQRMqofsHDhGpim%2F1txx3dXbrHq9wUn6vXeNMqRJp29cMzmXJ8%2FWqcx1C07FNqxI15cC7TJkDpNClXCw3dNrxavfbYQrQClan2T3PgikJOEsZ5t8%2B2bcS%2Bbsng92tJxT%2FSrCSRm%2FU0WWhn1YSF553aCwurvswcv4KZta47WDpoFHfgvNkAcwCcVTp5oy69F1INNK1KhYD1fNRe%2BN5Ldlf1s1FLOO45uMo6aj%2FPgPFccICcGC0IMIQUZgw192LqAY6sgLRvu7rAC9ZKHWOD3QHgy3Ie5k2iR70Ax7YgpjCRjQRcbvsMSiu6JK9DpIfPNXqslgw5ZN3BmqyIFD1lobJPbHhH%2Flz1YfZOr6MKu1gzj7TPlUqhEOjK9N4xL5O595oJu1wqIlAAIcLrY5rT%2FzE%2Fs7A71Ty53ngWVmBES9WKwZn0YpMCqi9IuiFib7MdBvYSi6CNKrZbXq70TNXH6%2B498wlzPjdFtc441UscFB1oaLzMe6vwDS2Zn%2ByymiKOnj9EVmBNMvAP0BIcQQmu%2FiJlmbZTGC%2Bcx85oT3DPSfBUe26sDzTrDoYahyrZgFuzNFAT7z4VES67UvPRFnv3%2BRjf8xtt3pf5iNDGeSGe9peY8btQKuUm4PDK6NtNE1hJv8OVyBRvAthsCVFcgAHkuMCO55nqa4%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230914T113220Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAURM2YRE7LZOPW2HQ%2F20230914%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=e4f30989ec2c1bc5ec1ff1e98ae82bce436ff75c399ac4e0997f20098bd52e1a" alt="" height="300px" width="550px">
+
+<p>With Envo, you'll be a part of an exciting movement and an eco-conscious culture.
+
+    Click the button below to verify your account.</p>
+
+    <h2><a href="{{ activate_url }}">Confirm Email Address</a></h2>
+    <ul>
+        <li>First and foremost, find out your estimated carbon footprint by completing the Home, Travel, Diet and
+            Other
+            surveys.</li>
+        <li>Then, join your group and team through the link sent to you by your comms team.</li>
+        <li>Start reducing your emissions, earning rewards and living better by taking on some actions on the app.
+        </li>
+        <li>Spend your Envo Coins to redeem great rewards.</li>
+
+    </ul>
+
+    <p>If you’ve got any questions, concerns or praise, hit reply to this email. Particularly if it’s the latter ;
+    
+
+
+    Cheers,
+    The Envo team
+
+    </p>
+<hr />
+<br />
+<br />
+<img src="https://images.unsplash.com/photo-1524601500432-1e1a4c71d692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3774&q=80" alt="" width="500px" height="500px">
+<br />
+<br />
+<hr />
+<br />
+<br />
+<pre>
+    Envo
+
+    Foley Street, Dublin 1, Dublin
+    Ireland
+    You received this email because your employer registered you for Envo Club's services.
+
+    Unsubscribe | Update your preferences
+</pre>
+
+
+{% endblocktrans %}{% endautoescape %}{% endblock %}

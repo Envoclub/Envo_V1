@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": "eu-west-1",
+        "django_settings": "backend.settings",
+        "profile_name": "envo",
+        "project_name": "backend",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-l8i62wrbk"
+    }
+}

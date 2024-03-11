@@ -1,0 +1,177 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Email</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 246, 246, 0.52), rgba(0, 246, 246, 0.52)), url('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3648&q=80') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* White with opacity */
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 30px; /* Increased padding */
+            max-width: 90%;
+            animation: fade-in 1s ease-in-out; /* Fade-in animation */
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555; /* Dark gray text */
+            margin-bottom: 20px; /* Increased spacing between text and button */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .icon-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 5px;
+        }
+
+        /* Enlarged Envo logo icon */
+        .envo-logo-icon {
+            font-size: 72px;
+            color: #00CED1; /* Turquoise */
+            margin-bottom: 20px; /* Increased spacing between logo and text */
+        }
+
+        /* Confirm Email button with animations */
+        .confirm-button {
+            background-color: #FF4500; /* Orange button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none; /* Remove underline */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Button animations */
+        }
+
+        .confirm-button:hover {
+            background-color: #FF8C00; /* Lighter orange on hover */
+            transform: scale(1.05); /* Button scaling on hover */
+        }
+
+        /* Keyframes for fade-in animation */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+<div class="container">
+
+    <i class="fas fa-leaf envo-logo-icon"></i> <!-- Enlarged Envo logo icon -->
+    
+<h2>{% trans "Confirm E-mail Address" %}</h2>
+
+{% if confirmation %}
+
+{% user_display confirmation.email_address.user as user_display %}
+
+<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+<strong><p>Thank you for signing up. You'll receive another email for resetting the password. Thank you for joining Envo.</p></strong>
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+{% csrf_token %}
+    <button  class="confirm-button" type="submit">{% trans 'Confirm' %}</button>
+</form>
+
+{% else %}
+
+{% url 'account_email' as email_url %}
+
+<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+
+{% endif %}
+
+<div class="buttons">
+    <a class="icon-link" href="#">
+        <i class="fab fa-google-play icon"></i>
+        Play Store
+    </a>
+    <a class="icon-link" href="#">
+        <i class="fab fa-app-store icon"></i>
+        App Store
+    </a>
+</div>
+
+</div>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+    // JavaScript functionality (e.g., redirecting to a confirmation page)
+    document.querySelector('.confirm-button').addEventListener('click', function () {
+        // Replace the URL with your confirmation page URL
+        window.location.href = 'confirmation.html';
+    });
+</script>
+<script>
+    $(document).ready(function (){
+        if(navigator.userAgent.toLowerCase().indexOf("android") > -1){
+            window.location.href = 'http://play.google.com/store/apps/details?id=com.truecaller&hl=en';
+        }
+        if(navigator.userAgent.toLowerCase().indexOf("iphone") > -1){
+            window.location.href = 'http://itunes.apple.com/lb/app/truecaller-caller-id-number/id448142450?mt=8';
+        }
+    });
+</script>
+
+</body>
+{% endblock %}
